@@ -1,1 +1,78 @@
 # next-level-futebol.-
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#14251b">
+<title>Next Level — Rotina de Centroavante</title>
+<style>
+:root{--bg:#101a14;--panel:#1b2b21;--panel2:#24382a;--lime:#b7f36b;--text:#f4f7f2;--muted:#b7c4b9;--line:#35483a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}header{padding:22px 18px 16px;background:linear-gradient(145deg,#1e3927,#101a14)}.brand{color:var(--lime);font-weight:900;letter-spacing:2px;font-size:22px}.sub{color:var(--muted);font-size:12px;margin-top:3px}.wrap{max-width:720px;margin:auto;padding:16px 14px 90px}.tabs{display:flex;gap:8px;margin:0 0 18px}.tab{flex:1;border:0;border-radius:12px;padding:12px 7px;background:var(--panel2);color:var(--text);font-weight:700}.tab.active{background:var(--lime);color:#172316}.page{display:none}.page.active{display:block}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}.eyebrow{color:var(--lime);font-size:11px;font-weight:800;letter-spacing:1.2px}h1{font-size:25px;line-height:1.15;margin:7px 0}h2{font-size:17px;margin:0 0 12px}p{color:var(--muted);margin:7px 0;line-height:1.45}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat strong{display:block;font-size:28px;color:var(--lime)}.stat span{font-size:12px;color:var(--muted)}.item{display:flex;align-items:flex-start;gap:11px;padding:12px 0;border-top:1px solid var(--line)}.item:first-of-type{border-top:0}.item input{accent-color:var(--lime);width:20px;height:20px;margin-top:2px}.item .details{flex:1}.item strong{display:block}.item small{color:var(--muted)}.done strong{text-decoration:line-through;color:var(--muted)}label{font-size:13px;color:var(--muted);display:block;margin:9px 0 5px}input[type=text],input[type=time],select,textarea{width:100%;background:#101a14;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:11px;font:inherit}button.primary{background:var(--lime);color:#152315;border:0;border-radius:11px;padding:12px 15px;font-weight:800;width:100%;margin-top:10px}button.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px 12px}.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}.daylist{display:flex;gap:6px;overflow:auto;margin-bottom:13px}.day{flex:0 0 auto;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:9px 12px}.day.active{background:var(--lime);color:#152315;font-weight:800}.footer{color:var(--muted);font-size:11px;text-align:center;padding:18px}.notice{font-size:12px;color:var(--muted);background:#17251b;border-radius:10px;padding:11px;margin-top:12px}
+</style>
+</head>
+<body>
+<header><div class="brand">⚽ NEXT LEVEL</div><div class="sub">ROTINA DE CENTROAVANTE · VERSÃO INICIAL</div></header>
+<main class="wrap">
+<nav class="tabs"><button class="tab active" data-page="home">Início</button><button class="tab" data-page="routine">Rotina</button><button class="tab" data-page="training">Treinos</button><button class="tab" data-page="progress">Progresso</button></nav>
+<section class="page active" id="home">
+<div class="card"><div class="eyebrow">SEU PRÓXIMO NÍVEL COMEÇA HOJE</div><h1>Organize sua rotina.<br>Entre em campo preparado.</h1><p>Uma ferramenta simples para conciliar futebol, escola, alimentação e descanso.</p></div>
+<div class="stats"><div class="card stat"><strong id="doneCount">0</strong><span>atividades concluídas</span></div><div class="card stat"><strong id="streakCount">0%</strong><span>do plano semanal concluído</span></div></div>
+<div class="card"><h2>📅 Foco de hoje</h2><div id="todaySummary"></div><button class="primary" onclick="showPage('routine')">Ver minha rotina</button></div>
+<div class="card"><h2>🎯 Lembrete do centroavante</h2><p>Treine domínio orientado, finalização com os dois pés, movimentação para receber e tomada de decisão. A qualidade e a regularidade importam mais do que exagerar na carga.</p></div>
+</section>
+<section class="page" id="routine">
+<div class="card"><h2>Minha rotina diária</h2><p>Edite os horários para combinar com sua escola e seus treinos.</p>
+<div class="row"><div><label for="wake">Acordar</label><input id="wake" type="time" value="07:00"></div><div><label for="school">Escola / compromisso</label><input id="school" type="time" value="07:15"></div></div>
+<div class="row"><div><label for="lunch">Almoço</label><input id="lunch" type="time" value="12:00"></div><div><label for="football">Futebol</label><input id="football" type="time" value="15:00"></div></div>
+<div class="row"><div><label for="dinner">Jantar</label><input id="dinner" type="time" value="18:30"></div><div><label for="sleep">Dormir</label><input id="sleep" type="time" value="22:30"></div></div>
+<label for="notes">Observações / outros compromissos</label><textarea id="notes" rows="3" placeholder="Ex.: treino com o time na terça e quinta"></textarea>
+<button class="primary" id="saveRoutine">Salvar rotina</button><p id="routineMsg" aria-live="polite"></p></div>
+<div class="card"><h2>Checklist do dia</h2><p>Marque o que você fez. As marcações ficam salvas neste aparelho.</p><div id="checklist"></div><button class="secondary" id="resetDay">Desmarcar atividades de hoje</button></div>
+</section>
+<section class="page" id="training">
+<div class="card"><h2>Treinos para centroavante</h2><p>Escolha uma atividade e marque quando terminar. Adapte a intensidade ao seu condicionamento e ao treino do seu time.</p><div id="trainingList"></div></div>
+<div class="card"><h2>Adicionar atividade</h2><label for="newTraining">Nome do treino</label><input id="newTraining" type="text" placeholder="Ex.: finalização com o pé fraco"><label for="newDuration">Duração aproximada</label><select id="newDuration"><option>5 min</option><option selected>10 min</option><option>15 min</option><option>20 min</option><option>30 min</option></select><button class="primary" id="addTraining">Adicionar treino</button></div>
+<div class="notice">Sugestão geral: priorize a técnica e faça os exercícios com espaço seguro. Combine cargas intensas com seu treinador e respeite o descanso.</div>
+</section>
+<section class="page" id="progress">
+<div class="card"><h2>Meu progresso</h2><p>Registre os números de jogos ou treinos. Você pode atualizar a qualquer momento.</p><label for="goals">Gols marcados</label><input id="goals" type="text" inputmode="numeric" value="0"><label for="assists">Assistências</label><input id="assists" type="text" inputmode="numeric" value="0"><label for="matches">Jogos disputados</label><input id="matches" type="text" inputmode="numeric" value="0"><label for="personalGoal">Minha meta da semana</label><input id="personalGoal" type="text" value="Concluir 3 sessões técnicas"><button class="primary" id="saveProgress">Salvar progresso</button><p id="progressMsg" aria-live="polite"></p></div>
+<div class="card"><h2>Resumo</h2><div class="stats"><div class="stat"><strong id="goalSummary">0</strong><span>gols</span></div><div class="stat"><strong id="assistSummary">0</strong><span>assistências</span></div></div><p id="personalGoalSummary"></p></div>
+</section>
+<div class="footer">NEXT LEVEL · Protótipo local · Seus dados ficam neste navegador neste aparelho.</div>
+</main>
+<script>
+const defaultTasks=[
+{id:'water',title:'Beber água ao longo do dia',desc:'Manter-se hidratado'},
+{id:'meal',title:'Fazer refeições regulares',desc:'Energia para estudar e jogar'},
+{id:'technique',title:'Treino técnico ou treino do time',desc:'Conforme o plano semanal'},
+{id:'recovery',title:'Recuperação e mobilidade leve',desc:'Sem forçar em caso de dor ou fadiga'},
+{id:'sleep',title:'Preparar-se para dormir no horário',desc:'Descanso faz parte do treino'}
+];
+const defaultTrainings=[
+{id:'touch',title:'Domínio e primeiro toque',desc:'10 min · controlar a bola orientando o próximo movimento'},
+{id:'finish',title:'Finalização técnica',desc:'15 min · precisão e técnica, com os dois pés'},
+{id:'move',title:'Movimentação sem bola',desc:'10 min · desmarque curto, apoio e ataque ao espaço'},
+{id:'pass',title:'Parede: passe e recepção',desc:'10 min · qualidade do passe e primeiro toque'}
+];
+let state=JSON.parse(localStorage.getItem('nextLevelState')||'{}');
+state.completed=state.completed||{};state.custom=state.custom||[];state.progress=state.progress||{goals:'0',assists:'0',matches:'0',personalGoal:'Concluir 3 sessões técnicas'};state.routine=state.routine||{};
+const today=new Date().toISOString().slice(0,10);
+function save(){localStorage.setItem('nextLevelState',JSON.stringify(state));render()}
+function isDone(id){return !!(state.completed[today]||{})[id]}
+function toggle(id){state.completed[today]=state.completed[today]||{};state.completed[today][id]=!state.completed[today][id];save()}
+function allTasks(){return defaultTasks.concat((defaultTrainings.concat(state.custom)).map(t=>({id:'tr_'+t.id,title:t.title,desc:t.desc||'Treino técnico'})))}
+function renderChecklist(){document.getElementById('checklist').innerHTML=defaultTasks.map(t=>`<label class="item ${isDone(t.id)?'done':''}"><input type="checkbox" ${isDone(t.id)?'checked':''} onchange="toggle('${t.id}')"><span class="details"><strong>${t.title}</strong><small>${t.desc}</small></span></label>`).join('')}
+function renderTrainings(){let ts=defaultTrainings.concat(state.custom);document.getElementById('trainingList').innerHTML=ts.map(t=>`<label class="item ${isDone('tr_'+t.id)?'done':''}"><input type="checkbox" ${isDone('tr_'+t.id)?'checked':''} onchange="toggle('tr_${t.id}')"><span class="details"><strong>${t.title}</strong><small>${t.desc||'Treino personalizado'}</small></span></label>`).join('')}
+function render(){renderChecklist();renderTrainings();const all=allTasks();const count=all.filter(t=>isDone(t.id)).length;document.getElementById('doneCount').textContent=count;document.getElementById('streakCount').textContent=Math.round(count/Math.max(1,all.length)*100)+'%';document.getElementById('todaySummary').innerHTML=`<p>${count} de ${all.length} atividades marcadas como concluídas hoje.</p>`;document.getElementById('goals').value=state.progress.goals;document.getElementById('assists').value=state.progress.assists;document.getElementById('matches').value=state.progress.matches;document.getElementById('personalGoal').value=state.progress.personalGoal;document.getElementById('goalSummary').textContent=state.progress.goals;document.getElementById('assistSummary').textContent=state.progress.assists;document.getElementById('personalGoalSummary').textContent='Meta: '+state.progress.personalGoal;for(const [id,val] of Object.entries(state.routine)){let el=document.getElementById(id);if(el)el.value=val}}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.page===id))}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+document.getElementById('saveRoutine').addEventListener('click',()=>{['wake','school','lunch','football','dinner','sleep','notes'].forEach(id=>state.routine[id]=document.getElementById(id).value);save();document.getElementById('routineMsg').textContent='Rotina salva neste aparelho.'});
+document.getElementById('resetDay').addEventListener('click',()=>{state.completed[today]={};save()});
+document.getElementById('addTraining').addEventListener('click',()=>{let name=document.getElementById('newTraining').value.trim();if(!name){alert('Digite o nome do treino.');return}state.custom.push({id:'custom'+Date.now(),title:name,desc:document.getElementById('newDuration').value+' · treino adicionado por você'});document.getElementById('newTraining').value='';save()});
+document.getElementById('saveProgress').addEventListener('click',()=>{state.progress={goals:cleanNum('goals'),assists:cleanNum('assists'),matches:cleanNum('matches'),personalGoal:document.getElementById('personalGoal').value.trim()||'Nenhuma meta definida'};save();document.getElementById('progressMsg').textContent='Progresso salvo neste aparelho.'});
+function cleanNum(id){return String(Math.max(0,parseInt(document.getElementById(id).value,10)||0))}
+render();
+</script>
+</body>
+</html>
